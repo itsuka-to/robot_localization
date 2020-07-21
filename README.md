@@ -1,10 +1,24 @@
 robot_localization for dashing
 ==================
 
-for dashing: 
+Using parameter for dashing: 
 
 https://index.ros.org//doc/ros2/Releases/Release-Dashing-Diademata/#declaring-parameters
 
+### prerequisites
+1. clone diagnostics repository
+```bash
+$ cd ~/ros2_ws/src
+$ git clone https://github.com/ros/diagnostics.git -b dashing
+```
+2. build
+```bash
+$ cd ~/ros2_ws
+$ colcon build --symlink-install
+$ . install/setup.bash
+```
+
+# Original
 ## robot_localization
 
 robot_localization is a package of nonlinear state estimation nodes. The package was developed by Charles River Analytics, Inc.
