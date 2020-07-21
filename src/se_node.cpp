@@ -45,7 +45,10 @@
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
-  auto node = rclcpp::Node::make_shared("se_node");
+  auto node = rclcpp::Node::make_shared("se_node",
+    rclcpp::NodeOptions()
+      .allow_undeclared_parameters(true)
+      .automatically_declare_parameters_from_overrides(true));
 
   std::string filter_type = "ekf";
   node->get_parameter("filter_type", filter_type);
