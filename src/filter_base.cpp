@@ -351,8 +351,12 @@ void FilterBase::prepareControl(
   control_acceleration_.setZero();
 
   if (use_control_) {
-    bool timed_out =
-      (reference_time - latest_control_time_ >= control_timeout_);
+    std::cout << "A check point !!!" << std::endl;
+    // bool timed_out =
+    //   (reference_time - latest_control_time_ >= control_timeout_);
+    bool timed_out = false;
+    std::cout << "B check point !!!" << std::endl;
+
 
     if (timed_out) {
       FB_DEBUG("Control timed out. Reference time was " <<

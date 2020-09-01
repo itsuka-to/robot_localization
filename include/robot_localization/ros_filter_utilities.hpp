@@ -47,8 +47,9 @@
 
 #define RF_DEBUG(msg) \
   if (filter_->getDebug()) { \
+    std::cout << msg; \ 
     debug_stream_ << msg; \
-  }
+  } 
 
 // Handy methods for debug output
 std::ostream & operator<<(std::ostream & os, const tf2::Vector3 & vec);

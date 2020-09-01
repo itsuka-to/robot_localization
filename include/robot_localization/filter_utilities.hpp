@@ -45,8 +45,10 @@
 
 #define FB_DEBUG(msg) \
   if (getDebug()) { \
-    *debug_stream_ << msg; \
+    std::cout << msg; \
+    *debug_stream_ << msg; \  
   }
+
 
 // Handy methods for debug output
 std::ostream & operator<<(std::ostream & os, const Eigen::MatrixXd & mat);

@@ -2804,7 +2804,6 @@ bool RosFilter::prepareTwist(
   bool can_transform = ros_filter_utilities::lookupTransformSafe(
     tf_buffer_, target_frame, msg_frame, msg->header.stamp, tf_timeout_,
     target_frame_trans);
-
   if (can_transform) {
     // Transform to correct frame. Note that we can get linear velocity
     // as a result of the sensor offset and rotational velocity
