@@ -6,10 +6,10 @@ Using parameter for dashing:
 https://index.ros.org//doc/ros2/Releases/Release-Dashing-Diademata/#declaring-parameters
 
 ### prerequisites
-1. clone diagnostics repository
+1. clone diagnostics repository(**crystal**, not dashing)
 ```bash
 $ cd ~/ros2_ws/src
-$ git clone https://github.com/ros/diagnostics.git -b dashing
+$ git clone https://github.com/ros/diagnostics.git -b crystal
 ```
 2. build
 ```bash
