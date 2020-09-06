@@ -908,7 +908,7 @@ void RosFilter::loadParams()
   // Create a subscriber for manually setting/resetting pose
   set_pose_sub_ =
     node_->create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
-    "set_pose",
+    "set_pose", 10, 
     std::bind(&RosFilter::setPoseCallback, this, std::placeholders::_1));
 
   // Create a service for manually setting/resetting pose
@@ -1016,7 +1016,7 @@ void RosFilter::loadParams()
             pose_callback_data, twist_callback_data);
 
         topic_subs_.push_back(
-          node_->create_subscription<nav_msgs::msg::Odometry>(odom_topic,
+          node_->create_subscription<nav_msgs::msg::Odometry>(odom_topic, 10, 
           odom_callback));
       } else {
 
@@ -1133,7 +1133,7 @@ void RosFilter::loadParams()
 
         topic_subs_.push_back(node_->create_subscription<
             geometry_msgs::msg::PoseWithCovarianceStamped>(
-            pose_topic, pose_callback));
+            pose_topic, 10, pose_callback));
 
         if (differential) {
           twist_var_counts[StateMemberVx] += pose_update_vec[StateMemberX];
@@ -1209,7 +1209,7 @@ void RosFilter::loadParams()
 
         topic_subs_.push_back(node_->create_subscription<
             geometry_msgs::msg::TwistWithCovarianceStamped>(
-            twist_topic, twist_callback));
+            twist_topic, 10, twist_callback));
 
         twist_var_counts[StateMemberVx] += twist_update_vec[StateMemberVx];
         twist_var_counts[StateMemberVy] += twist_update_vec[StateMemberVy];
@@ -1358,7 +1358,7 @@ void RosFilter::loadParams()
             twist_callback_data, accel_callback_data);
 
         topic_subs_.push_back(node_->create_subscription<sensor_msgs::msg::Imu>(
-            imu_topic, imu_callback));
+            imu_topic, 10, imu_callback));
       } else {
         std::cerr << "Warning: " << imu_topic <<
           " is listed as an input topic, "
@@ -1432,7 +1432,7 @@ void RosFilter::loadParams()
       deceleration_gains);
 
     control_sub_ = node_->create_subscription<geometry_msgs::msg::Twist>(
-      "cmd_vel",
+      "cmd_vel", 10, 
       std::bind(&RosFilter::controlCallback, this, std::placeholders::_1));
   }
 
@@ -1714,7 +1714,7 @@ void RosFilter::run()
 
   // Publisher
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr position_pub =
-    node_->create_publisher<nav_msgs::msg::Odometry>("odometry/filtered");
+    node_->create_publisher<nav_msgs::msg::Odometry>("odometry/filtered", 10);
   tf2_ros::TransformBroadcaster world_transform_broadcaster(node_);
 
   // Optional acceleration publisher
@@ -1723,7 +1723,7 @@ void RosFilter::run()
   if (publish_acceleration_) {
     accel_pub =
       node_->create_publisher<geometry_msgs::msg::AccelWithCovarianceStamped>(
-      "accel/filtered");
+      "accel/filtered", 10);
   }
 
   rclcpp::Rate loop_rate(frequency_);
